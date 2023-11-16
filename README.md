@@ -1,0 +1,1 @@
+# templated-spring-data-r2dbc
