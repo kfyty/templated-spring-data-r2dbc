@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.kfyty.reactive.r2dbc.query.templated.config.TemplatedR2dbcAutoConfig
