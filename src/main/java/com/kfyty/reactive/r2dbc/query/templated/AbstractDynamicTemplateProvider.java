@@ -17,7 +17,6 @@ package com.kfyty.reactive.r2dbc.query.templated;
 
 import com.kfyty.reactive.r2dbc.query.templated.mapping.TemplateStatement;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
@@ -40,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 /**
  * 动态模板 SQL 提供者基础实现
@@ -50,6 +50,11 @@ import java.util.function.Supplier;
  */
 @Slf4j
 public abstract class AbstractDynamicTemplateProvider<TS extends TemplateStatement> implements DynamicTemplateProvider<TS>, ResourceLoaderAware, InitializingBean {
+    /**
+     * 空行正则
+     */
+    public static final Pattern BLANK_LINE_PATTERN = Pattern.compile("(?m)^\\s*$" + System.lineSeparator());
+
     /**
      * 要解析的模板路径
      */

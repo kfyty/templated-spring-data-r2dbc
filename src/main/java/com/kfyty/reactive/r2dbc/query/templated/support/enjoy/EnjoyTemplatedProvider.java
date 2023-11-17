@@ -23,7 +23,8 @@ public class EnjoyTemplatedProvider extends AbstractDynamicTemplateProvider<Enjo
     @Override
     public String renderTemplate(String statementId, Map<String, Object> params) {
         EnjoyTemplateStatement template = this.templateStatements.get(statementId);
-        return template.getTemplate().renderToString(params);
+        String sql = template.getTemplate().renderToString(params);
+        return sql.replaceAll(BLANK_LINE_PATTERN.pattern(), "").trim();
     }
 
     @Override

@@ -263,7 +263,7 @@ public class TemplatedTemplateBasedR2dbcQuery extends StringBasedR2dbcQuery {
         for (Iterator<RelationalParameters.RelationalParameter> i = list.iterator(); i.hasNext(); ) {
             String name = i.next().getName().get();
             for (String usedName : used) {
-                if (usedName.contains(name)) {              // 必须使用包含
+                if (usedName.startsWith("[" + name + "]")) {              // 转换成了 Map，因此使用了 []
                     continue loop;
                 }
             }
